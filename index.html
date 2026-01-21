@@ -230,7 +230,7 @@ header{
   height:14px;
   background:radial-gradient(circle,#ffd,#ff9900,#ff6600);
   border-radius:50%;
-  animation:piscar .6s infinite alternate;
+  animation:piscar .6s infinite alternate; /* restaurado */
   transition: opacity 0.5s;
 }
 .chama.apagada { opacity:0; }
@@ -271,10 +271,23 @@ header{
   animation:entrar 1.5s ease forwards;
   z-index:1;
 }
-.timeline .final img{
-  box-shadow:0 0 35px #fff;
-  transform: scale(1.1);
-  transition: transform 0.5s, box-shadow 0.5s;
+
+/* ÚLTIMA FOTO - maior, brilho, formato polaroid */
+.timeline .final {
+  position: relative;
+  width: 280px;       /* um pouco maior */
+  height: 460px;      /* ajustar proporção */
+  background: #fff;
+  padding: 12px 12px 28px;
+  box-shadow: 0 15px 30px rgba(0,0,0,.35), 0 0 35px #fff; /* brilho */
+  animation: balanco 4s ease-in-out infinite;
+  overflow: hidden;
+  z-index: 1;
+}
+.timeline .final img {
+  width: 100%;
+  height: calc(100% - 28px);
+  object-fit: cover;
 }
 
 /* ASSINATURA */
@@ -433,31 +446,11 @@ document.getElementById("senha").addEventListener("input",e=>{
     const fotos=document.querySelectorAll("#timeline .polaroid");
     fotos.forEach((f,i)=>setTimeout(()=>f.style.display="block",i*2500));
     setTimeout(cartaMaquina, fotos.length*2500);
-
-    /* EASTER EGG temporário */
-    setTimeout(()=>{
-      const ee=document.createElement("div");
-      ee.textContent="Eu te amo ❤️";
-      ee.style.position="fixed";
-      ee.style.top="50%";
-      ee.style.left="50%";
-      ee.style.transform="translate(-50%,-50%)";
-      ee.style.fontSize="3rem";
-      ee.style.color="hotpink";
-      ee.style.textShadow="0 0 15px #ff69b4";
-      ee.style.zIndex="9999";
-      document.body.appendChild(ee);
-      setTimeout(()=>ee.remove(),2500);
-    },1000);
   }
 });
 
 /* CARTA MAQUINA DE ESCREVER */
-const cartaTexto=`Meu amor,
-
-Querido(a) amigo(a),
-
-Hoje é um dia especial, cheio de alegria e lembranças.
+const cartaTexto=`Hoje é um dia especial, cheio de alegria e lembranças.
 
 Que seu próximo ano seja repleto de amor, saúde e conquistas.
 
