@@ -9,7 +9,7 @@
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:Great Vibes, Helvetica, sans-serif;
   background:linear-gradient(180deg,#ffd6e5,#ff9ac8,#ff6fae);
   color:#fff;
   overflow-x:hidden;
@@ -470,7 +470,7 @@ header{
     <!-- Contador -->
     <div class="contador" id="contador"></div>
 
-    <div class="assinatura">-com todo amor, pedro</div>
+    <div class="assinatura">Pedro H.</div>
   </div>
 </div>
 
@@ -495,19 +495,26 @@ function anim(){
 }
 anim();
 
-/* CORAÇÕES */
+/* CORAÇÕES (2 tipos) */
 setInterval(()=>{
   const c=document.createElement("div");
   c.className="coracao";
-  c.innerText="💗","🤍";
+  c.innerText="💗";
   c.style.left=Math.random()*100+"vw";
   document.body.appendChild(c);
   setTimeout(()=>c.remove(),12000);
+
+  const c2=document.createElement("div");
+  c2.className="coracao";
+  c2.innerText="🤍";
+  c2.style.left=Math.random()*100+"vw";
+  document.body.appendChild(c2);
+  setTimeout(()=>c2.remove(),12000);
 },1000);
 
 /* SENHA + TIMELINE */
 document.getElementById("senha").addEventListener("input",e=>{
-  if(e.target.value==="123456789"){
+  if(e.target.value==="210108"){
     msg.style.display="block";
     const fotos=document.querySelectorAll("#timeline .polaroid");
     fotos.forEach((f,i)=>setTimeout(()=>f.style.display="block",i*2500));
@@ -516,14 +523,16 @@ document.getElementById("senha").addEventListener("input",e=>{
 });
 
 /* CARTA MAQUINA DE ESCREVER */
-const cartaTexto = `Meu amor🤍,
+const cartaTexto = `Meu amor,
+
+Querido(a) amigo(a),
 
 Hoje é um dia especial, cheio de alegria e lembranças.
 
 Que seu próximo ano seja repleto de amor, saúde e conquistas.
 
 Com carinho,
-- pedro`;
+Pedro.`;
 function cartaMaquina(){
   const el = document.getElementById("carta");
   let i=0;
@@ -533,30 +542,20 @@ function cartaMaquina(){
   },50);
 }
 
-/* B) LOGICA DAS VELAS (LONG PRESS) */
+/* VELAS (LONG PRESS) */
 const velasEl = document.querySelectorAll('.chama');
 let pressTimer;
-
-function startPress() {
-  pressTimer = setTimeout(apagarVelasSequencia, 2000);
-}
-
-function cancelPress() {
-  clearTimeout(pressTimer);
-}
-
+function startPress() { pressTimer = setTimeout(apagarVelasSequencia, 2000); }
+function cancelPress() { clearTimeout(pressTimer); }
 document.addEventListener('mousedown', startPress);
 document.addEventListener('touchstart', startPress);
 document.addEventListener('mouseup', cancelPress);
 document.addEventListener('touchend', cancelPress);
-
 function apagarVelasSequencia() {
   let indices = Array.from({length: velasEl.length}, (_, i) => i);
   indices.sort(() => Math.random() - 0.5);
   indices.forEach((index, i) => {
-    setTimeout(() => {
-      velasEl[index].classList.add('apagada');
-    }, i * 200);
+    setTimeout(() => { velasEl[index].classList.add('apagada'); }, i * 200);
   });
 }
 
@@ -564,7 +563,6 @@ function apagarVelasSequencia() {
 function atualizarContador(){
   const contador = document.getElementById("contador");
   const hoje = new Date();
-  const inicio = new Date("2026-01-21T00:00:00");
   const fim = new Date("2027-01-21T00:00:00");
   let restante = fim - hoje;
   if(restante<0) restante=0;
