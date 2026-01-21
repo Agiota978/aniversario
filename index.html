@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aniversário</title>
 
-<!-- Fonte Grade Vibes para o título -->
-<link href="https://fonts.googleapis.com/css2?family=Grad+Vibes&display=swap" rel="stylesheet">
-
 <style>
 *{box-sizing:border-box}
 body{
@@ -17,6 +14,7 @@ body{
   color:#fff;
   overflow-x:hidden;
   text-align:center;
+  position: relative;
 }
 
 /* CONFETE */
@@ -27,43 +25,17 @@ canvas{
   z-index:0;
 }
 
-/* CORAÇÕES FLUTUANTES */
+/* CORAÇÕES FLUTUANTES - fundo */
 .coracao{
   position:fixed;
   bottom:-30px;
   font-size:22px;
   opacity:.6;
   animation:subir 12s linear infinite;
-  z-index:0; /* fundo */
+  z-index:0;
 }
 @keyframes subir{
   to{transform:translateY(-120vh)}
-}
-
-/* PARTÍCULAS SUAVES */
-.particula{
-  position:fixed;
-  width:4px;
-  height:4px;
-  background:rgba(255,255,255,.5);
-  border-radius:50%;
-  animation:flutuar 20s linear infinite;
-}
-@keyframes flutuar{
-  to{transform:translateY(-120vh)}
-}
-
-/* BALÕES DISTANTES */
-.balao{
-  position:fixed;
-  width:20px;
-  height:26px;
-  background:rgba(255,255,255,.15);
-  border-radius:50%;
-  animation:balao 25s linear infinite;
-}
-@keyframes balao{
-  to{transform:translateY(-140vh)}
 }
 
 /* TÍTULO */
@@ -73,7 +45,6 @@ header{
   font-weight:bold;
   position:relative;
   z-index:1;
-  font-family:'Grad Vibes', cursive;
 }
 
 /* POLAROIDS */
@@ -108,11 +79,6 @@ header{
   width:100%;
   height:calc(100% - 28px);
   object-fit:cover;
-  transition: all 0.5s;
-}
-.polaroid.final img {
-  transform: scale(1.1);
-  filter: brightness(1.2);
 }
 .polaroid .data{
   position:absolute;
@@ -237,17 +203,15 @@ header{
 .velas{
   position:absolute;
   bottom: 254px;
-  top: auto;
   left:50%;
   transform:translateX(-50%);
   display:flex;
   gap:4px;
-  z-index: 6;
-  opacity: 0;
+  z-index:6;
+  opacity:0;
   animation: aparecer-velas 1s ease forwards 3.0s;
   flex-wrap: wrap;
   justify-content: center;
-  width: auto;
 }
 @keyframes aparecer-velas { to { opacity: 1; } }
 
@@ -269,25 +233,7 @@ header{
   animation:piscar .6s infinite alternate;
   transition: opacity 0.5s;
 }
-.chama.apagada {
-  opacity: 0;
-}
-@keyframes piscar{
-  to{transform:translateX(-50%) scale(.8)}
-}
-
-/* FUMAÇA */
-.fumaca{
-  position:absolute;
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:rgba(255,255,255,.5);
-  animation:fuma 1.5s forwards;
-}
-@keyframes fuma{
-  to{transform:translateY(-40px);opacity:0}
-}
+.chama.apagada { opacity:0; }
 
 /* CARTÃO */
 .cartao{
@@ -323,86 +269,63 @@ header{
   position:relative;
   display:none;
   animation:entrar 1.5s ease forwards;
+  z-index:1;
 }
-
-/* FITA ADESIVA NA TIMELINE */
-.timeline .polaroid::before {
-  background: rgba(128, 0, 128, 0.6) !important;
-  transform: translateX(-50%) rotate(-3deg);
-  width: 100px;
-  height: 24px;
-  top: -12px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-@keyframes entrar{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:none}
-}
-.timeline .final{
-  transform:scale(1.08);
-  box-shadow:0 0 35px rgba(255,255,255,.8);
+.timeline .final img{
+  box-shadow:0 0 35px #fff;
+  transform: scale(1.1);
+  transition: transform 0.5s, box-shadow 0.5s;
 }
 
 /* ASSINATURA */
-.assinatura {
-  width: 100%;
-  text-align: right;
-  padding-right: 10px;
-  margin-top: 15px;
-  font-size: 1.1rem;
-  font-style: italic;
-  opacity: 0.9;
+.assinatura{
+  width:100%;
+  text-align:right;
+  padding-right:10px;
+  margin-top:15px;
+  font-size:1.1rem;
+  font-style:italic;
+  opacity:0.9;
 }
 
 /* CAMPO DE SENHA COM EMOJI */
-.input-wrapper {
+.input-wrapper{
   position: relative;
   display: inline-block;
   width: 100%;
   max-width: 250px;
 }
-.input-icon {
+.input-icon{
   position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.1rem;
-  z-index: 2;
-  pointer-events: none;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:1.1rem;
+  z-index:2;
+  pointer-events:none;
 }
-#senha {
-  width: 100%;
-  padding: 10px 10px 10px 40px;
-  border-radius: 20px;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  text-align: center;
-}
-
-/* ESTRELAS */
-.estrela{
-  position:fixed;
-  width:6px;
-  height:6px;
-  background:#fff;
-  border-radius:50%;
-  opacity:.8;
+#senha{
+  width:100%;
+  padding:10px 10px 10px 40px;
+  border-radius:20px;
+  border:none;
+  outline:none;
+  font-size:1rem;
+  text-align:center;
 }
 
 /* CARTA */
 .carta{
-  max-width: 320px;
-  margin: 20px auto;
-  padding: 20px;
-  background: rgba(255,255,255,.2);
-  border-radius: 12px;
-  text-align: left;
-  font-size: 1rem;
-  line-height: 1.5;
-  min-height: 150px;
-  white-space: pre-wrap;
+  max-width:320px;
+  margin:20px auto;
+  padding:20px;
+  background:rgba(255,255,255,.2);
+  border-radius:12px;
+  text-align:left;
+  font-size:1rem;
+  line-height:1.5;
+  min-height:150px;
+  white-space:pre-wrap;
 }
 
 /* CONTADOR */
@@ -426,11 +349,9 @@ header{
   <div class="camada media"></div>
   <div class="recheio recheio-2"></div>
   <div class="camada pequena"></div>
-  
-  <div class="velas">
-    <!-- 18 velas -->
-    ${Array.from({length:18},()=>`<div class="vela"><div class="chama"></div></div>`).join('')}
-  </div>
+
+  <!-- 18 VELAS -->
+  <div class="velas" id="velasContainer"></div>
 </div>
 
 <div class="polaroids">
@@ -457,12 +378,8 @@ header{
       <div class="polaroid final"><img src="foto_timeline6.jpg"><div class="data">2025 — 17 anos</div></div>
     </div>
 
-    <!-- Carta aberta -->
     <div class="carta" id="carta"></div>
-    
-    <!-- Contador -->
     <div class="contador" id="contador"></div>
-
     <div class="assinatura">Pedro H.</div>
   </div>
 </div>
@@ -471,7 +388,7 @@ header{
 /* CONFETE */
 const canvas=document.getElementById("confete");
 const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;canvas.height=innerHeight;
+canvas.width=innerWidth; canvas.height=innerHeight;
 let conf=[];
 for(let i=0;i<250;i++){
   conf.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,s:Math.random()*6+2,c:`hsl(${Math.random()*360},100%,60%)`,v:0.3+Math.random()});
@@ -488,17 +405,26 @@ function anim(){
 }
 anim();
 
-/* CORAÇÕES 💗 e 🤍 em fundo */
+/* CORAÇÕES fundo */
 setInterval(()=>{
-  ['💗','🤍'].forEach(emoji=>{
-    const c=document.createElement("div");
-    c.className="coracao";
-    c.innerText=emoji;
-    c.style.left=Math.random()*100+"vw";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),12000);
-  });
+  const c=document.createElement("div");
+  c.className="coracao";
+  c.innerText=Math.random()>0.5?"💗":"🤍";
+  c.style.left=Math.random()*100+"vw";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),12000);
 },1000);
+
+/* VELAS - criando 18 */
+const velasContainer = document.getElementById('velasContainer');
+for(let i=0;i<18;i++){
+  const v=document.createElement('div');
+  v.className='vela';
+  const ch=document.createElement('div');
+  ch.className='chama';
+  v.appendChild(ch);
+  velasContainer.appendChild(v);
+}
 
 /* SENHA + TIMELINE */
 document.getElementById("senha").addEventListener("input",e=>{
@@ -507,56 +433,72 @@ document.getElementById("senha").addEventListener("input",e=>{
     const fotos=document.querySelectorAll("#timeline .polaroid");
     fotos.forEach((f,i)=>setTimeout(()=>f.style.display="block",i*2500));
     setTimeout(cartaMaquina, fotos.length*2500);
+
+    /* EASTER EGG temporário */
+    setTimeout(()=>{
+      const ee=document.createElement("div");
+      ee.textContent="Eu te amo ❤️";
+      ee.style.position="fixed";
+      ee.style.top="50%";
+      ee.style.left="50%";
+      ee.style.transform="translate(-50%,-50%)";
+      ee.style.fontSize="3rem";
+      ee.style.color="hotpink";
+      ee.style.textShadow="0 0 15px #ff69b4";
+      ee.style.zIndex="9999";
+      document.body.appendChild(ee);
+      setTimeout(()=>ee.remove(),2500);
+    },1000);
   }
 });
 
 /* CARTA MAQUINA DE ESCREVER */
-const cartaTexto = `Meu amor,
+const cartaTexto=`Meu amor,
+
+Querido(a) amigo(a),
 
 Hoje é um dia especial, cheio de alegria e lembranças.
 
 Que seu próximo ano seja repleto de amor, saúde e conquistas.
 
 Com carinho,
-Pedro 🤍`;
+Pedro.`;
 function cartaMaquina(){
-  const el = document.getElementById("carta");
+  const el=document.getElementById("carta");
   let i=0;
-  const intervalo = setInterval(()=>{
+  const intervalo=setInterval(()=>{
     el.textContent+=cartaTexto[i++];
     if(i>=cartaTexto.length) clearInterval(intervalo);
   },50);
 }
 
 /* VELAS (LONG PRESS) */
-const velasEl = document.querySelectorAll('.chama');
+const velasEl=document.querySelectorAll('.chama');
 let pressTimer;
-function startPress() { pressTimer = setTimeout(apagarVelasSequencia, 2000); }
-function cancelPress() { clearTimeout(pressTimer); }
-document.addEventListener('mousedown', startPress);
-document.addEventListener('touchstart', startPress);
-document.addEventListener('mouseup', cancelPress);
-document.addEventListener('touchend', cancelPress);
-function apagarVelasSequencia() {
-  let indices = Array.from({length: velasEl.length}, (_, i) => i);
-  indices.sort(() => Math.random() - 0.5);
-  indices.forEach((index, i) => {
-    setTimeout(() => { velasEl[index].classList.add('apagada'); }, i * 200);
-  });
+function startPress(){ pressTimer=setTimeout(apagarVelasSequencia,2000);}
+function cancelPress(){clearTimeout(pressTimer);}
+document.addEventListener('mousedown',startPress);
+document.addEventListener('touchstart',startPress);
+document.addEventListener('mouseup',cancelPress);
+document.addEventListener('touchend',cancelPress);
+function apagarVelasSequencia(){
+  let indices=Array.from({length:velasEl.length},(_,i)=>i);
+  indices.sort(()=>Math.random()-0.5);
+  indices.forEach((index,i)=>{setTimeout(()=>{velasEl[index].classList.add('apagada');},i*200);});
 }
 
 /* CONTADOR */
 function atualizarContador(){
-  const contador = document.getElementById("contador");
-  const hoje = new Date();
-  const fim = new Date("2027-01-21T00:00:00");
-  let restante = fim - hoje;
+  const contador=document.getElementById("contador");
+  const hoje=new Date();
+  const fim=new Date("2027-01-21T00:00:00");
+  let restante=fim-hoje;
   if(restante<0) restante=0;
-  const dias = Math.floor(restante/1000/60/60/24);
-  const horas = Math.floor((restante/1000/60/60)%24);
-  const minutos = Math.floor((restante/1000/60)%60);
-  const segundos = Math.floor((restante/1000)%60);
-  contador.textContent = `Faltam ${dias} dias, ${horas}h ${minutos}m ${segundos}s para 21/01/2027`;
+  const dias=Math.floor(restante/1000/60/60/24);
+  const horas=Math.floor((restante/1000/60/60)%24);
+  const minutos=Math.floor((restante/1000/60)%60);
+  const segundos=Math.floor((restante/1000)%60);
+  contador.textContent=`Faltam ${dias} dias, ${horas}h ${minutos}m ${segundos}s para 21/01/2027`;
 }
 setInterval(atualizarContador,1000);
 atualizarContador();
