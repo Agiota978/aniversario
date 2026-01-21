@@ -470,7 +470,7 @@ header{
     <!-- Contador -->
     <div class="contador" id="contador"></div>
 
-    <div class="assinatura">-nome</div>
+    <div class="assinatura">-com todo amor, pedro</div>
   </div>
 </div>
 
@@ -499,7 +499,7 @@ anim();
 setInterval(()=>{
   const c=document.createElement("div");
   c.className="coracao";
-  c.innerText="💗";
+  c.innerText="💗","🤍";
   c.style.left=Math.random()*100+"vw";
   document.body.appendChild(c);
   setTimeout(()=>c.remove(),12000);
@@ -516,14 +516,14 @@ document.getElementById("senha").addEventListener("input",e=>{
 });
 
 /* CARTA MAQUINA DE ESCREVER */
-const cartaTexto = `Querido(a) amigo(a),
+const cartaTexto = `Meu amor🤍,
 
 Hoje é um dia especial, cheio de alegria e lembranças.
 
 Que seu próximo ano seja repleto de amor, saúde e conquistas.
 
 Com carinho,
-- Seu amigo`;
+- pedro`;
 function cartaMaquina(){
   const el = document.getElementById("carta");
   let i=0;
